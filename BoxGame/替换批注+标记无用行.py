@@ -23,6 +23,15 @@ game_y = (screen_height - SCREEN_RECT.height) / 2
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (game_x, game_y)
 
 game_maps = {
+    ice_map: [
+        [0, W, A, L, L, S, A, N, D, W, A, L, L, S, 0],
+        [W, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, W],
+        [A, 0, M, Y, 0, H, E, A, R, T, 0, I, S, 0, A],
+        [L, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, L],
+        [L, 0, L, I, K, E, 0, F, R, O, Z, E, N, 0, L],
+        [S, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, S],
+        [0, W, A, L, L, S, I, C, E, W, A, L, L, S, 0],
+    ],
     1: [
         [9, 9, 1, 1, 1, 9, 9, 9],
         [9, 9, 1, 4, 1, 9, 9, 9],
@@ -210,7 +219,7 @@ class BoxGame(object):
                 if self.__is_on_reset_img(x, y):
                     # Restart
                     self.__reset_game()
-                    
+
     @staticmethod
     def __is_on_reset_img(x, y):
         #if the player click in the range of reset image
