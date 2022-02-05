@@ -1,9 +1,4 @@
 # -*- Coding:UTF-8 -*-
-"""
-游戏精灵模块
-author:David
-version:1.0
-"""
 
 import pygame
 
@@ -21,12 +16,16 @@ GAME_BACKGROUND = "image/white_bg.png"
 PERSON_IMAGE = "image/human.png"
 # The game boxes
 BOX_IMAGE = "image/box.png"
+
+##############################
 # After the box arrive the location 
 STAR_IMAGE = "image/star.png"
 # The pictures of the end point
 TERMINAL_IMAGE = "image/terminal.png"
 # 目的地与游戏重叠的图片
 TERMINAL_PERSON_IMAGE = "image/t_man.png"
+##############################
+
 # Game walls
 GAME_WALL = "image/wall.png"
 # Reset picture
@@ -105,21 +104,13 @@ class GameSprite(pygame.sprite.Sprite):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
         self.game_map = game_map
-        # 标识游戏箱子到达目的地
         self.is_success = False
 
     def set_pos(self, x, y):
-        """设置位置"""
         self.rect.x = x
         self.rect.y = y
 
     def set_sprite_pos(self, sprite_counts, sprite_flag):
-        """
-        the sprite position
-        :param sprite_counts
-        :param sprite_flag
-        :return:
-        """
         count = 0
         for x in range(len(self.game_map)):
             for y in range(len(self.game_map[x])):
@@ -132,7 +123,6 @@ class GameSprite(pygame.sprite.Sprite):
 
 
 class GamePerson(GameSprite):
-    """游戏角色精灵"""
 
     def __init__(self, image, game_map):
         super().__init__(image, game_map)
@@ -142,35 +132,29 @@ class GamePerson(GameSprite):
         super().set_sprite_pos(0, PERSON_FLAG)
 
     def move_left(self):
-        """向右移动"""
         self.rect.x = self.rect.x - self.rect.width
         pass
 
     def move_right(self):
-        """向左移动"""
         self.rect.x = self.rect.x + self.rect.width
         pass
 
     def move_up(self):
-        """向上移动"""
         self.rect.y = self.rect.y - self.rect.height
         pass
 
     def move_down(self):
-        """向下移动"""
         self.rect.y = self.rect.y + self.rect.height
         pass
 
 
 class Box(GameSprite):
-    """游戏箱子精灵"""
 
     def __init__(self, image, game_map):
         super().__init__(image, game_map)
 
-
+##############################
 class TextSprite(pygame.sprite.Sprite):
-    """显示文本的精灵"""
 
     def __init__(self, text):
         super().__init__()
@@ -189,3 +173,4 @@ class TextSprite(pygame.sprite.Sprite):
         """更新精灵显示文本"""
         self.text = text
         self.image = self.sys_font.render(str(self.text), True, RED)
+##############################
