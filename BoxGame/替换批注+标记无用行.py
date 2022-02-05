@@ -1,7 +1,4 @@
 # -*- Coding:UTF-8 -*-
-"""
-#Main module
-"""
 
 import os
 import sys
@@ -175,7 +172,6 @@ class BoxGame(object):
         self.__create_sprite()
 
     def start_game(self):
-        """Game Start"""
         while True:
             # Play music
             if not pygame.mixer.music.get_busy():
@@ -190,7 +186,6 @@ class BoxGame(object):
             pass
 
     def __event_handle(self):
-        """Keep tracking"""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
