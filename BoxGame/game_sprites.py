@@ -1,58 +1,64 @@
 # -*- Coding:UTF-8 -*-
 """
 游戏精灵模块
-author:Mr Liu
+author:David
 version:1.0
 """
 
 import pygame
 
-# 游戏音乐
+# Game Music
 GAME_MUSIC = "image/卡农.mp3"
-# 游戏窗口大小
+# Game size
 SCREEN_RECT = pygame.Rect(0, 0, 700, 480)
-# 游戏名称
+# Game Name
 GAME_NAME = "BoxGame"
-# 游戏刷新帧率
+# Refresh rate
 FRAME_PRE_SEC = 60
-# 游戏背景图片
+# Background
 GAME_BACKGROUND = "image/white_bg.png"
-# 游戏角色图片
+# The image of "I"
 PERSON_IMAGE = "image/human.png"
-# 游戏箱子图片
+# The game boxes
 BOX_IMAGE = "image/box.png"
-# 箱子到达终点时星星图片
+# After the box arrive the location 
 STAR_IMAGE = "image/star.png"
-# 终点图片
+# The pictures of the end point
 TERMINAL_IMAGE = "image/terminal.png"
 # 目的地与游戏重叠的图片
 TERMINAL_PERSON_IMAGE = "image/t_man.png"
-# 游戏墙图片
+# Game walls
 GAME_WALL = "image/wall.png"
-# 重玩图片
+# Reset picture
 RED_RESET_IMG = "image/red_reset.png"
 BLUE_RESET_IMG = "image/blue_reset.png"
 
-# 文本字体的大小
+# Font Size
 TEXT_FONT_SIZE = 25
 
-# 关卡文本显示位置
+# Level display position
 LEVEL_DISPLAY_POS = pygame.Rect(520, 50, 100, 50)
-# 计时文本显示位置
+# timing
 TIME_DISPLAY_POS = pygame.Rect(520, 150, 100, 50)
-# 计步文本显示位置
+# steps
 STEP_DISPLAY_POS = pygame.Rect(520, 250, 100, 50)
-# 重玩图片显示位置
+# remake button
 RESET_IMG_POS = pygame.Rect(520, 350, 64, 64)
 
-# 9	# 表示空
-WALL_FLAG = 1  # 表示墙
-PERSON_FLAG = 3  # 表示人
-BOX_FLAG = 2  # 表示箱子
-TERMINAL_FLAG = 4  # 表示目的地（球）
-FINISH_BOX_FLAG = 5  # 表示已完成的箱子
+# 0	# Null
+WALL_FLAG = 1  # Wall
+BOX_FLAG = 2  # Box
+PERSON_FLAG = 3  # ?
+TERMINAL_FLAG = 4  # shows the end block 
+FINISH_BOX_FLAG = 5  # finished boxes
 
-# 字体颜色
+I_BOX='I'
+C_BOX='C'
+E_BOX='E'
+
+
+
+
 RED = pygame.color.Color("RED")
 YELLOW = pygame.color.Color("YELLOW")
 BLUE = pygame.color.Color("#70f3ff")
@@ -63,7 +69,6 @@ PINK = pygame.color.Color("#ff4777")
 
 
 class GameSprite(pygame.sprite.Sprite):
-    """游戏精灵基类"""
 
     def __init__(self, image, game_map):
         super().__init__()
@@ -80,16 +85,15 @@ class GameSprite(pygame.sprite.Sprite):
 
     def set_sprite_pos(self, sprite_counts, sprite_flag):
         """
-        设置精灵的位置
-        :param sprite_counts:精灵出现的数量
-        :param sprite_flag:精灵的标记
+        the sprite position
+        :param sprite_counts
+        :param sprite_flag
         :return:
         """
         count = 0
         for x in range(len(self.game_map)):
             for y in range(len(self.game_map[x])):
                 if self.game_map[x][y] == sprite_flag:
-                    # 根据箱子的第几个数数量来设置位置
                     if count == sprite_counts:
                         self.rect.x = self.rect.width * x
                         self.rect.y = self.rect.height * y
@@ -154,5 +158,4 @@ class TextSprite(pygame.sprite.Sprite):
     def update(self, text):
         """更新精灵显示文本"""
         self.text = text
-        # 根据字体创建显示对象(文字)    render(self,text,antialias,color,background = None)
         self.image = self.sys_font.render(str(self.text), True, RED)
