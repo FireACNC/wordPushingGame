@@ -2,7 +2,7 @@
 This is a project for CMU TartanHacks 2022 Spring from the team wuHu-TakeOff.
 It contains the main game file named wordPushingGame and some subfiles with music and images.
 
-You can run the game in the main file wordPushingGame.
+You can run the game in the main file wordPushingGame.py.
 
 Here are some simple instructions for playing this game:
 1. Use arrow keys to control the main character "I".
