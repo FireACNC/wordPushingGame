@@ -1,4 +1,4 @@
-# wuHu-TakeOff
+# wordPushingGame
 This is a project for CMU TartanHacks 2022 Spring from the team wuHu-TakeOff.
 It contains the main game file named wordPushingGame and some subfiles with music and images.
 
