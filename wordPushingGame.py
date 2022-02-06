@@ -81,6 +81,7 @@ trigger = 0
 # Paint the landscape
 def drawGameImage():
     global posX, posY
+    cv.delete('all')
     for row in range(mapLength):
         for col in range(mapWidth):
             if mapList[row][col] == 'I4':
@@ -92,14 +93,14 @@ def drawGameImage():
             cv.create_image((row * 50+50, col * 50+50), image=img)
             cv.pack()
 
-# def update(ind):
-#     i4 = i4s[ind]
-#     ind += 1
-#     if ind >= 2:
-#         ind = 0
-#     allLetters['I4'] = i4
-#     drawGameImage()
-#     root.after(200, update, ind)
+def update(ind):
+    i4 = i4s[ind]
+    ind += 1
+    if ind >= 2:
+        ind = 0
+    allLetters['I4'] = i4
+    if trigger!=1: drawGameImage()
+    root.after(200, update, ind)
 
 def callback(event):  # Keyboard Control
     global posX, posY, mapList, trigger
@@ -166,8 +167,8 @@ def coordinateMove(x1, y1, x2, y2):
     if trigger == 0 and triggerEffect() == True:
         pygame.mixer.music.load(melting)
         pygame.mixer.music.play(loops = 0, start=0.0, fade_ms=0)
-        updateIce()
         trigger += 1
+        updateIce()
         
     elif trigger == 1:
         root.after_cancel(icy)
@@ -211,8 +212,8 @@ drawGameImage()
 cv.bind("<KeyPress>", callback)
 cv.pack()
 cv.focus_set()  # Focus on cv
-# root.after(0, update, 0)
-# root.update
+root.after(0, update, 0)
+root.update
 root.mainloop()
 #Gameover stop the music
 pygame.mixer.music.stop()
